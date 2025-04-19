@@ -1,10 +1,10 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Nota {
 
     private int id;
     private double valor;
-    private Date fechaExamen;
+    private LocalDate fechaExamen;
     private boolean esRecuperatorio;
     private Catedra catedra;
     private Alumno alumno;
@@ -12,7 +12,7 @@ public class Nota {
     public Nota() {
     }
 
-    public Nota(int id, double valor, Date fechaExamen, boolean esRecuperatorio) {
+    public Nota(int id, double valor, LocalDate fechaExamen, boolean esRecuperatorio) {
         this.id = id;
         this.valor = valor;
         this.fechaExamen = fechaExamen;
@@ -35,11 +35,11 @@ public class Nota {
         this.valor = valor;
     }
 
-    public Date getFechaExamen() {
+    public LocalDate getFechaExamen() {
         return fechaExamen;
     }
 
-    public void setFechaExamen(Date fechaExamen) {
+    public void setFechaExamen(LocalDate fechaExamen) {
         this.fechaExamen = fechaExamen;
     }
 

@@ -1,5 +1,5 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Alumno {
@@ -7,14 +7,14 @@ public class Alumno {
     private long legajo;
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private Catedra catedra;
     private List<Nota> notas = new ArrayList<>();
 
     public Alumno() {
     }
 
-    public Alumno(long legajo, String nombre, String apellido, Date fechaNacimiento) {
+    public Alumno(long legajo, String nombre, String apellido, LocalDate fechaNacimiento) {
         this.legajo = legajo;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,11 +45,11 @@ public class Alumno {
         this.apellido = apellido;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -77,7 +77,7 @@ public class Alumno {
             }
             if(codigoCatedra != null && nota.getCatedra().getCodigo() == codigoCatedra){
                 if(nota.getValor()> mejor.getValor()){
-                        mejor = nota;
+                    mejor = nota;
                 }
             }else {
                 if (nota.getValor() > mejor.getValor()) {
@@ -107,5 +107,23 @@ public class Alumno {
         }else{
             return promedio/acumulador;
         }
+    }
+
+    public boolean tieneRecuperatorios() {
+        for (Nota nota : notas) {
+            if (nota.isEsRecuperatorio()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("%s %s - Promedio: %.2f",
+                nombre,
+                apellido,
+                promedioNotas(null));
     }
 }
