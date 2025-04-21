@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 
 public class Escuela {
 
@@ -44,7 +45,47 @@ public class Escuela {
     public void setDivisionCursos(List<DivisionCurso> divisionCursos) {
         this.divisionCursos = divisionCursos;
     }
+//A5
+    public Alumno getMejorAlumnoEscuela(int anioNacimientoAlumno) {
+        Alumno mejorAlumno = null;
+        double mejorPromedio = 0;
 
+        for (DivisionCurso division : divisionCursos) {
+            for (Catedra catedra : division.getCatedras()) {
+                for (Alumno alumno : catedra.getAlumnos()) {
+                    LocalDate fechaNac = alumno.getFechaNacimiento();
+                    int anioNacimiento = fechaNac.getYear();
+
+                    if (anioNacimiento == anioNacimientoAlumno) {
+                        boolean tieneDesaprobadas = false;
+                        double sumaNotas = 0;
+                        int cantidadNotas = 0;
+
+                        for (Nota nota : alumno.getNotas()) {
+                            if (nota.getValor() < 6) {
+                                tieneDesaprobadas = true;
+                                break;
+                            }
+                            sumaNotas += nota.getValor();
+                            cantidadNotas++;
+                        }
+
+                        if (!tieneDesaprobadas && cantidadNotas > 0) {
+                            double promedio = sumaNotas / cantidadNotas;
+                            if (promedio > mejorPromedio || mejorAlumno == null) {
+                                mejorPromedio = promedio;
+                                mejorAlumno = alumno;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return mejorAlumno;
+    }
+
+//A6
     public List<Alumno> getMejoresAlumnos(int anioNacimientoAlumno){
        List<Alumno> mejoresAlumnos = new ArrayList<>();
 
