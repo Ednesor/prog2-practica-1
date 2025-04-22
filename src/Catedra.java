@@ -56,4 +56,14 @@ public class Catedra {
     public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
+
+    public Alumno mejorAlumnoCatedra(){
+        if(this.alumnos.size() == 0) return null;
+        Alumno notaMasAlta = this.alumnos.getFirst();
+        for (int i = 1; i < this.alumnos.size(); i++) {
+            System.out.println(this.alumnos.get(i));
+            if(this.alumnos.get(i).promedioNotas(this.codigo) > notaMasAlta.promedioNotas((this.codigo))) notaMasAlta = this.alumnos.get(i);
+        }
+        return notaMasAlta;
+    }
 }

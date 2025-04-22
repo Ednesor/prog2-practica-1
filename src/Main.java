@@ -65,17 +65,28 @@ public class Main {
         nota2.setAlumno(alumno1);
         nota2.setCatedra(catedra1);
         alumno1.getNotas().add(nota2);
+        alumno1.getNotas().add(nota2);
+        alumno1.getNotas().add(nota2);
+        alumno1.getNotas().add(nota2);
         catedra1.getNotas().add(nota2);
 
         Nota nota3 = new Nota(3, 9.0, LocalDate.of(2023, 3, 20), false);
         nota3.setAlumno(alumno2);
         nota3.setCatedra(catedra1);
         alumno2.getNotas().add(nota3);
+        alumno2.getNotas().add(nota3);
+        alumno2.getNotas().add(nota3);
+        alumno2.getNotas().add(nota3);
+        alumno2.getNotas().add(nota3);
         catedra1.getNotas().add(nota3);
 
         Nota nota4 = new Nota(4, 7.5, LocalDate.of(2023, 3, 25), false);
         nota4.setAlumno(alumno3);
         nota4.setCatedra(catedra2);
+        alumno3.getNotas().add(nota4);
+        alumno3.getNotas().add(nota4);
+        alumno3.getNotas().add(nota4);
+        alumno3.getNotas().add(nota4);
         alumno3.getNotas().add(nota4);
         catedra2.getNotas().add(nota4);
 
@@ -119,10 +130,9 @@ public class Main {
         // Ejemplos de uso de los métodos
         System.out.println("Mejor nota de " + alumno1.getNombre() + " en Programacion 1: " + alumno1.mejorNota(catedra1.getCodigo()).getValor());
         System.out.println("Promedio de notas de " + alumno1.getNombre() + " en general: " + alumno1.promedioNotas(null));
-        System.out.println("Alumno con mejor promedio en Programacion 1: " ); //Falta implementar mejorAlumnoCatedra
-        System.out.println("Alumno con mejor promedio en la DivisionCurso: "); //Falta implementar mejorAlumnoDivisionCurso
-        System.out.println("Mejor alumno de la escuela nacido en 2000: "); //Falta implementar getMejorAlumnoEscuela
-        System.out.println("Los 3 mejores alumnos de la escuela nacidos en 2000: ");
-        System.out.println(escuela.getMejoresAlumnos(2000));
+        System.out.println("Alumno con mejor promedio en Programacion 1: "+ catedra1.mejorAlumnoCatedra() ); //Falta implementar mejorAlumnoCatedra
+        System.out.println("Alumno con mejor promedio en la DivisionCurso: " + divisionCurso.mejorAlumnoDivisionCurso());
+        System.out.println("Mejor alumno de la escuela nacido en 2000: " + escuela.getMejorAlumnoEscuela(2000));
+        System.out.println("Los 3 mejores alumnos de la escuela nacidos en 2000: " + escuela.getMejoresAlumnos(2000));
     }
 }

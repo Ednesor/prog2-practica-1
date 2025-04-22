@@ -57,4 +57,24 @@ public class DivisionCurso {
     public void setCatedras(List<Catedra> catedras) {
         this.catedras = catedras;
     }
+
+    public Alumno mejorAlumnoDivisionCurso(){
+        Alumno mejorAlumno;
+        if(this.catedras.getFirst().getAlumnos().isEmpty()) return null;
+        else mejorAlumno = this.catedras.getFirst().getAlumnos().getFirst();
+
+        for(Catedra catedra: this.catedras){
+            for(Alumno alumno: catedra.getAlumnos()){
+                System.out.println(catedra + " - "+ alumno.getNotas().size());
+                if(alumno.getNotas().size() < 5) continue;
+                if(alumno.tieneRecuperatorios()) continue;
+
+                if(alumno.promedioNotas(catedra.getCodigo()) > mejorAlumno.promedioNotas(catedra.getCodigo())){
+                    mejorAlumno = alumno;
+                }
+            }
+        }
+        if(!mejorAlumno.tieneRecuperatorios() && mejorAlumno.getNotas().size() >= 5) return mejorAlumno;
+        else return null;
+    }
 }
